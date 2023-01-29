@@ -12,9 +12,10 @@ RUN sed -i "s@http://deb.debian.org@http://mirrors.aliyun.com@g" /etc/apt/source
 RUN apt-get update && \
 	apt-get install -y telnet net-tools vim inetutils-ping \
     nginx curl prosody lua-sec lua-basexx lua-luaossl lua-cjson lua-inspect \
-    coturn dnsutils
-    # apt-get clean && \
-    # rm -Rf /var/lib/apt/lists/*
+    coturn dnsutils \
+    openjdk-11-jdk ruby-hocon jq && \
+    apt-get clean && \
+    rm -Rf /var/lib/apt/lists/*
 
 # 设置时区
 RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
