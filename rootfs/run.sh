@@ -1,7 +1,5 @@
 #!/bin/bash
 
-INNER_IP="10.8.6.245"
-DOMAIN="docker.jitsi.com"
 EMAIL="1021217094@qq.com"
 
 JVB_SECRET="jvb123"
@@ -9,9 +7,6 @@ JICOFO_AUTH_PASSWORD="jicofo123"
 
 APPID="appid123"
 APP_SECRET="appsecret123"
-
-SSH_PASSWD="root"
-SSH_PORT="8822"
 
 # 容器初次运行时安装deb包
 if [ -d "/build" ]; then
