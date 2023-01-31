@@ -10,6 +10,9 @@ JICOFO_AUTH_PASSWORD="jicofo123"
 APPID="appid123"
 APP_SECRET="appsecret123"
 
+SSH_PASSWD="root"
+SSH_PORT="8822"
+
 # 容器初次运行时安装deb包
 if [ -d "/build" ]; then
 
@@ -45,9 +48,16 @@ if [ -d "/build" ]; then
     echo "org.ice4j.ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS=$INNER_IP" >> $NEW_JITSI_CONFIG
     echo "org.ice4j.ice.harvest.NAT_HARVESTER_PUBLIC_ADDRESS=$INNER_IP" >> $NEW_JITSI_CONFIG
 
+    # ssh 服务配置
+    echo "root:$SSH_PASSWD" | chpasswd
+    echo -e "PasswordAuthentication yes\nPermitRootLogin yes" >> /etc/ssh/sshd_config
+    echo -e "Port $SSH_PORT" >> /etc/ssh/sshd_config
+    update-rc.d ssh enable
+
 fi
 
 # 重启服务
+service ssh restart
 service prosody restart
 service nginx restart
 service jicofo restart

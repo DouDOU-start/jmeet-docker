@@ -10,7 +10,7 @@ LABEL author="DouDOU" email="1021217094@qq.com" descripton="jmeet-base"
 RUN sed -i "s@http://deb.debian.org@http://mirrors.163.com@g" /etc/apt/sources.list
 
 RUN apt-get update && \
-	apt-get install -y telnet net-tools vim inetutils-ping \
+	apt-get install -y telnet net-tools vim inetutils-ping openssh-server \
     nginx curl prosody lua-sec lua-basexx lua-luaossl lua-cjson lua-inspect \
     coturn dnsutils \
     openjdk-11-jdk ruby-hocon jq \
