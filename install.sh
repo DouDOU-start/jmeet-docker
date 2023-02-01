@@ -1,5 +1,7 @@
 #!/bin/bash
 
+INSTALL_FROM=$1
+
 # 创建安装参数存储文件，用于下次快速安装
 INSTALL_PROFILE=/etc/jmeet_install_profile
 if [ ! -f "${INSTALL_PROFILE}" ]; 
@@ -50,6 +52,25 @@ jmeet_tip="
 "
 echo -e "${YELLOW}${jmeet_tip}${POS}${BLACK}"
 
+echo "Author: \"DouDOU\""
+echo "Github: \"https://github.com/DouDOU-start\""
+echo "Email: \"1021217094@qq.com\""
+echo ""
+
+if [[ -n $(docker ps -q -f "name=^jmeet$") ]];then
+	echo "错误：jmeet网络视频会议服务已存在，请卸载后再尝试重新安装！"
+    echo ""
+    exit -1
+fi
+
+if [[ $INSTALL_FROM == "gz" ]];
+then
+    echo "正在导入jmeet镜像..."
+    docker load -i jmeet-docker-v1.0.0.tar.gz
+    echo "导入jmeet镜像成功！"
+    echo ""
+fi
+
 if [ $DOMAIN ];
 then
 	read -e -p "请输入您的域名: " -i "${DOMAIN}" DOMAIN
@@ -78,6 +99,8 @@ else
 	read -e -p "请输入容器SSH服务密码: " -i "root" SSH_PASSWD
 fi
 
+echo ""
+
 docker run -itd --name jmeet \
     --net=host \
     --restart=unless-stopped \
@@ -86,5 +109,17 @@ docker run -itd --name jmeet \
     -e SSH_PORT=$SSH_PORT \
     -e SSH_PASSWD=$SSH_PASSWD \
     doudou/jmeet:v1.0.0
+
+echo ""
+echo -e "███ 容器正在启动...\c"
+while [[ ! `docker exec jmeet bash service nginx status` =~ "nginx is running" ]]; 
+do
+    echo -e "....\c"
+    sleep 3
+done
+
+echo ""
+echo "jmeet网络视频会议服务安装成功！"
+echo "访问地址：https://$PUBLIC_IP"
 
 # docker exec -it jmeet /bin/bash

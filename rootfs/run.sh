@@ -54,9 +54,9 @@ fi
 # 重启服务
 service ssh restart
 service prosody restart
-service nginx restart
 service jicofo restart
 service jitsi-videobridge2 restart
+service nginx restart
 
 # Docker容器后台运行,就必须有一个前台进程
 dummy=/config/dummy

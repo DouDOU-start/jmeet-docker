@@ -109,3 +109,15 @@ if [[ ${COMMAND} == "build" ]]; then
 
 fi
 
+if [[ ${COMMAND} == "tag" ]]; then
+    echo ""
+    echo "start to save docker image.."
+    echo ""
+    docker save doudou/jmeet:$VERSION | gzip > jmeet-docker-$VERSION.tar.gz
+    # docker save -o jmeet-docker-$VERSION.tar doudou/jmeet:$VERSION
+
+    echo ""
+    echo "start to tag zip package.."
+    echo ""
+    zip jmeet-docker-$VERSION-$BUILD_TIME.zip -r install.sh uninstall.sh jmeet-docker-$VERSION.tar.gz
+fi
