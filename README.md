@@ -4,7 +4,7 @@
 
 **本段描述的是jmeet-docker服务编译以及安装过程的一些注意事项**
 
-- jmeet-docker服务必须在docker环境下运行，docker安装教程请参照
+- jmeet-docker服务必须在docker环境下运行，docker安装教程请参照官网
 
   [docker]: https://www.docker.com/
 
