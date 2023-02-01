@@ -16,7 +16,7 @@
 
 通过release包直接安装jmeet服务仅支持linux系统，这里推荐使用的是Ubuntu系统
 
-1. **下载最新版release包：**https://github.com/DouDOU-start/jmeet-docker/releases
+1. **下载最新版release包：** https://github.com/DouDOU-start/jmeet-docker/releases
 
 2. **安装jmeet服务过程如下：**
 
