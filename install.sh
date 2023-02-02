@@ -85,6 +85,20 @@ else
 	read -e -p "请输入公网IP地址: " -i "${INNER_IP}" PUBLIC_IP
 fi
 
+if [ $SIP_ACCOUNT ];
+then
+	read -e -p "请输入SIP服务账号: " -i "${SIP_ACCOUNT}" SIP_ACCOUNT
+else
+	read -e -p "请输入SIP服务账号: " -i "9999@${INNER_IP}" SIP_ACCOUNT
+fi
+
+if [ $SIP_PASSWORD ];
+then
+	read -e -p "请输入SIP账号密码: " -i "${SIP_PASSWORD}" SIP_PASSWORD
+else
+	read -e -p "请输入SIP账号密码: " -i "root" SIP_PASSWORD
+fi
+
 if [ $SSH_PORT ];
 then
 	read -e -p "请输入容器SSH服务端口: " -i "${SSH_PORT}" SSH_PORT
@@ -107,6 +121,8 @@ docker run -itd --name jmeet \
     -e INNER_IP=$INNER_IP \
     -e DOMAIN=$DOMAIN \
     -e SSH_PORT=$SSH_PORT \
+    -e SIP_ACCOUNT=$SIP_ACCOUNT \
+    -e SIP_PASSWORD=$SIP_PASSWORD \
     -e SSH_PASSWD=$SSH_PASSWD \
     doudou/jmeet:v1.0.0
 

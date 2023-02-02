@@ -14,7 +14,8 @@ RUN apt-get update && \
     nginx curl prosody lua-sec lua-basexx lua-luaossl lua-cjson lua-inspect \
     coturn dnsutils \
     openjdk-11-jdk ruby-hocon jq \
-    procps uuid-runtime libssl1.1 && \
+    procps uuid-runtime libssl1.1 \
+    default-jre-headless openssl && \
     apt-get clean && \
     rm -Rf /var/lib/apt/lists/*
 

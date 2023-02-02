@@ -12,6 +12,7 @@ DIR_OF_MEET=../jmeet
 DIR_OF_LIB=../lib-jmeet
 DIR_OF_JICOFO=../jicofo
 DIR_OF_VIDEOBRIDGE=../jitsi-videobridge
+DIR_OF_JIGASI=../jigasi
 
 if [[ ${COMMAND} == "build" ]]; then
 
@@ -53,6 +54,13 @@ if [[ ${COMMAND} == "build" ]]; then
             echo "start to compile videobridge.."
             echo ""
             cd resources && bash build_deb_package.sh
+        popd
+
+        pushd $DIR_OF_JIGASI > /dev/null
+            echo ""
+            echo "start to compile jigasi.."
+            echo ""
+            cd script && bash build_deb_package.sh
         popd
     fi
 
@@ -96,6 +104,16 @@ if [[ ${COMMAND} == "build" ]]; then
             echo "start to compile videobridge.."
             echo ""
             cd resources && bash build_deb_package.sh
+        popd
+    fi
+
+    # 仅编译jigasi工程
+    if [[ $BUILD_TARGET ==  "jigasi" ]]; then
+        pushd $DIR_OF_JIGASI > /dev/null
+            echo ""
+            echo "start to compile jigasi.."
+            echo ""
+            cd script && bash build_deb_package.sh
         popd
     fi
 

@@ -8,6 +8,9 @@ JICOFO_AUTH_PASSWORD="jicofo123"
 APPID="appid123"
 APP_SECRET="appsecret123"
 
+# SIP_ACCOUNT="number@ip"
+# SIP_PASSWORD="password"
+
 # 容器初次运行时安装deb包
 if [ -d "/build" ]; then
 
@@ -24,6 +27,9 @@ if [ -d "/build" ]; then
     echo "jicofo jicofo/jicofo-authpassword string $JICOFO_AUTH_PASSWORD" | debconf-set-selections
     echo "videobridge jitsi-videobridge/jvbsecret string $JVB_SECRET" | debconf-set-selections
 
+    echo "jigasi jigasi/sip-account string $SIP_ACCOUNT" | debconf-set-selections
+    echo "jigasi jigasi/sip-password password $SIP_PASSWORD" | debconf-set-selections
+
     dpkg -i /build/jitsi-meet-web_1.0.1-1_all.deb
     dpkg -i /build/jitsi-meet-web-config_1.0.1-1_all.deb
     dpkg -i /build/jitsi-meet-prosody_1.0.1-1_all.deb
@@ -31,6 +37,7 @@ if [ -d "/build" ]; then
     dpkg -i /build/jitsi-meet-turnserver_1.0.1-1_all.deb
     dpkg -i /build/jicofo_1.0-0-g9fc93ed-1_all.deb
     dpkg -i /build/jitsi-videobridge2_2.1-0-g676fb3d-1_all.deb
+    dpkg -i /build/jigasi_1.1-0-g9a369e3-1_all.deb
 
     # 启动脚本授予可执行权限
     chmod u+x /usr/share/jicofo/jicofo.sh
