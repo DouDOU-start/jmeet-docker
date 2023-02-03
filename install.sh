@@ -113,6 +113,13 @@ else
 	read -e -p "请输入容器SSH服务密码: " -i "root" SSH_PASSWD
 fi
 
+setEnv DOMAIN $DOMAIN
+setEnv PUBLIC_IP $PUBLIC_IP
+setEnv SIP_ACCOUNT $SIP_ACCOUNT
+setEnv SIP_PASSWORD $SIP_PASSWORD
+setEnv SSH_PORT $SSH_PORT
+setEnv SSH_PASSWD $SSH_PASSWD
+
 echo ""
 
 docker run -itd --name jmeet \

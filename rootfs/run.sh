@@ -63,6 +63,7 @@ service ssh restart
 service prosody restart
 service jicofo restart
 service jitsi-videobridge2 restart
+service jigasi restart
 service nginx restart
 
 # Docker容器后台运行,就必须有一个前台进程
