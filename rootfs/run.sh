@@ -48,7 +48,7 @@ if [ -d "/build" ]; then
     # ice地址配置
     NEW_JITSI_CONFIG="/etc/jitsi/videobridge/sip-communicator.properties"
     echo "org.ice4j.ice.harvest.NAT_HARVESTER_LOCAL_ADDRESS=$INNER_IP" >> $NEW_JITSI_CONFIG
-    echo "org.ice4j.ice.harvest.NAT_HARVESTER_PUBLIC_ADDRESS=$INNER_IP" >> $NEW_JITSI_CONFIG
+    echo "org.ice4j.ice.harvest.NAT_HARVESTER_PUBLIC_ADDRESS=$PUBLIC_IP" >> $NEW_JITSI_CONFIG
 
     # ssh 服务配置
     echo "root:$SSH_PASSWD" | chpasswd

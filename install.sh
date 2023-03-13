@@ -125,6 +125,7 @@ echo ""
 docker run -itd --name jmeet \
     --net=host \
     --restart=unless-stopped \
+    -e PUBLIC_IP=$PUBLIC_IP \
     -e INNER_IP=$INNER_IP \
     -e DOMAIN=$DOMAIN \
     -e SSH_PORT=$SSH_PORT \
